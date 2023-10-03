@@ -2,7 +2,6 @@ package com.bar42.botcui.fetcher
 
 import com.bar42.botcui.model.Game
 import com.bar42.botcui.model.enums.Scenario
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -14,11 +13,11 @@ interface GameInterface {
     suspend fun getAll(): Response<List<Game>>
 
     @POST("games")
-    fun addGame(@Body game: Game)
+    suspend fun addGame(@Body game: Game)
 
     @GET("games/{gameId}")
-    fun getGame(@Path("gameId") gameId: Int): Call<Game>
+    suspend fun getGame(@Path("gameId") gameId: Int): Response<Game>
 
     @POST("games/{gameId}/deal/{scenario}")
-    fun startGame(@Path("gameId") gameId: Int, @Path("scenario") scenario: Scenario)
+    suspend fun startGame(@Path("gameId") gameId: Int, @Path("scenario") scenario: Scenario)
 }

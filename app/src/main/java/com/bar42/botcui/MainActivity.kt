@@ -1,15 +1,21 @@
 package com.bar42.botcui
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.ui.AppBarConfiguration
 import com.bar42.botcui.databinding.ActivityMainBinding
+import com.bar42.botcui.fetcher.BaseFetcher
+import com.bar42.botcui.model.Global
+import com.bar42.botcui.model.enums.GameStatus
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,11 +30,9 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        fillGameList(binding.gamesList)
 
-        binding.fab.setOnClickListener { view ->
+        binding.add.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
@@ -50,9 +54,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+    private fun fillGameList(gamesList: ListView) {
+        val adapter = ArrayAdapter<String>(this, R.layout.game_item_layout, mutableListOf())
+        gamesList.adapter = adapter
+        lifecycleScope.launch (Dispatchers.IO) {
+            val gamesAvailable = BaseFetcher.gameInterface.getAll().body()!!
+                .filter { it.status != GameStatus.FINISHED }
+                .map { "${it.id} : ${it.status}" }
+            withContext(Dispatchers.Main) {
+                adapter.clear()
+                adapter.addAll(gamesAvailable)
+            }
+        }
+        gamesList.setOnItemClickListener { parent, view, position, id ->
+            val elementText = gamesList.adapter.getItem(position).toString()
+            val gameId = elementText.split(":")[0].trim().toInt()
+            Global.gameId = gameId
+//            findNavController().navigate(R.id.action_GameListFragment_to_GameFragment)
+        }
     }
 }
