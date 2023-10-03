@@ -13,7 +13,10 @@ interface GameInterface {
     suspend fun getAll(): Response<List<Game>>
 
     @POST("games")
-    suspend fun addGame(@Body game: Game)
+    suspend fun addGame(@Body game: Game): Response<Game>
+
+    @POST("games")
+    suspend fun addGame(): Response<Game>
 
     @GET("games/{gameId}")
     suspend fun getGame(@Path("gameId") gameId: Int): Response<Game>

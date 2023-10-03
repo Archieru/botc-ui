@@ -11,5 +11,6 @@ open class BaseFetcher() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val gameInterface = retrofit.create(GameInterface::class.java)
+        val playerInterface = retrofit.create(PlayerInterface::class.java)
     }
 }

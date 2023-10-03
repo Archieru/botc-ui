@@ -1,5 +1,6 @@
 package com.bar42.botcui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -7,19 +8,14 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.ui.AppBarConfiguration
 import com.bar42.botcui.databinding.ActivityMainBinding
 import com.bar42.botcui.fetcher.BaseFetcher
-import com.bar42.botcui.model.Global
 import com.bar42.botcui.model.enums.GameStatus
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,9 +28,13 @@ class MainActivity : AppCompatActivity() {
 
         fillGameList(binding.gamesList)
 
-        binding.add.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.add.setOnClickListener {
+            lifecycleScope.launch (Dispatchers.IO) {
+                val gameCreated = BaseFetcher.gameInterface.addGame().body()!!
+                withContext(Dispatchers.Main) {
+                    switchToGame(gameCreated.id!!)
+                }
+            }
         }
     }
 
@@ -69,8 +69,13 @@ class MainActivity : AppCompatActivity() {
         gamesList.setOnItemClickListener { parent, view, position, id ->
             val elementText = gamesList.adapter.getItem(position).toString()
             val gameId = elementText.split(":")[0].trim().toInt()
-            Global.gameId = gameId
-//            findNavController().navigate(R.id.action_GameListFragment_to_GameFragment)
+            switchToGame(gameId)
         }
+    }
+
+    private fun switchToGame(id: Int) {
+        val intent = Intent(this, GameActivity::class.java)
+        intent.putExtra("gameId", id)
+        startActivity(intent)
     }
 }

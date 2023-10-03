@@ -1,17 +1,26 @@
 package com.bar42.botcui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.InputType
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowInsets
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.bar42.botcui.databinding.ActivityGameBinding
+import com.bar42.botcui.fetcher.BaseFetcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -22,6 +31,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
     private lateinit var fullscreenContent: TextView
     private lateinit var fullscreenContentControls: LinearLayout
+    private var gameId: Int = 0
     private val hideHandler = Handler(Looper.myLooper()!!)
 
     @SuppressLint("InlinedApi")
@@ -42,11 +52,13 @@ class GameActivity : AppCompatActivity() {
                         View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
         }
     }
+
     private val showPart2Runnable = Runnable {
         // Delayed display of UI elements
         supportActionBar?.show()
         fullscreenContentControls.visibility = View.VISIBLE
     }
+
     private var isFullscreen: Boolean = false
 
     private val hideRunnable = Runnable { hide() }
@@ -61,10 +73,8 @@ class GameActivity : AppCompatActivity() {
             MotionEvent.ACTION_DOWN -> if (AUTO_HIDE) {
                 delayedHide(AUTO_HIDE_DELAY_MILLIS)
             }
-
             MotionEvent.ACTION_UP -> view.performClick()
-            else -> {
-            }
+            else -> {}
         }
         false
     }
@@ -72,7 +82,7 @@ class GameActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        gameId = intent.getIntExtra("gameId", 0)
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -90,6 +100,12 @@ class GameActivity : AppCompatActivity() {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         binding.dummyButton.setOnTouchListener(delayHideTouchListener)
+
+        binding.addPlayer.setOnClickListener { createPlayerDialog() }
+
+        binding.back.setOnClickListener {
+           startActivity(Intent(this, MainActivity::class.java))
+        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -102,11 +118,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun toggle() {
-        if (isFullscreen) {
-            hide()
-        } else {
-            show()
-        }
+        if (isFullscreen) { hide() } else { show() }
     }
 
     private fun hide() {
@@ -121,7 +133,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun show() {
-        // Show the system bar
         if (Build.VERSION.SDK_INT >= 30) {
             fullscreenContent.windowInsetsController?.show(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
         } else {
@@ -145,6 +156,26 @@ class GameActivity : AppCompatActivity() {
         hideHandler.postDelayed(hideRunnable, delayMillis.toLong())
     }
 
+    fun createPlayerDialog() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.player_name)
+        val input = EditText(this)
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        builder.setView(input)
+
+        builder.setPositiveButton(R.string.dialog_ok) { _, _ ->
+            lifecycleScope.launch (Dispatchers.IO) {
+                BaseFetcher.playerInterface
+                    .addPlayerToGame(gameId, input.text.toString())
+            }
+        }
+
+        builder.setNegativeButton(R.string.dialog_cancel) { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+    }
     companion object {
         /**
          * Whether or not the system UI should be auto-hidden after
