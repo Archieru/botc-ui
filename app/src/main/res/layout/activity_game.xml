@@ -16,7 +16,7 @@
          android:fitsSystemWindows. -->
 
     <androidx.gridlayout.widget.GridLayout
-        android:layout_marginVertical="50sp"
+        android:layout_marginVertical="50px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:rowCount="5"
@@ -25,15 +25,17 @@
         android:layout_gravity="center">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="0"
             app:layout_row="0">
 
             <Button
                 android:id="@+id/player1"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,9 +43,10 @@
 
             <Button
                 android:id="@+id/target1"
-                android:layout_width="100sp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
                 android:gravity="top|start"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player1"
                 app:layout_constraintStart_toStartOf="@+id/player1"
@@ -51,24 +54,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="1"
             app:layout_row="0">
 
             <Button
                 android:id="@+id/player2"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target2" />
 
             <Button
                 android:id="@+id/target2"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player2"
                 app:layout_constraintEnd_toEndOf="@+id/player2"
@@ -77,24 +83,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="2"
             app:layout_row="0">
 
             <Button
                 android:id="@+id/player3"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target3" />
 
             <Button
                 android:id="@+id/target3"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player3"
                 app:layout_constraintEnd_toEndOf="@+id/player3"
@@ -103,24 +112,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="3"
             app:layout_row="0">
 
             <Button
                 android:id="@+id/player4"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target4" />
 
             <Button
                 android:id="@+id/target4"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player4"
                 app:layout_constraintEnd_toEndOf="@+id/player4"
@@ -129,24 +141,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="4"
             app:layout_row="0">
 
             <Button
                 android:id="@+id/player5"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target5" />
 
             <Button
                 android:id="@+id/target5"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player5"
                 app:layout_constraintEnd_toEndOf="@+id/player5"
@@ -155,24 +170,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="0"
             app:layout_row="1">
 
             <Button
                 android:id="@+id/player6"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target6" />
 
             <Button
                 android:id="@+id/target6"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player6"
                 app:layout_constraintEnd_toEndOf="@+id/player6"
@@ -181,24 +199,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="4"
             app:layout_row="1">
 
             <Button
                 android:id="@+id/player7"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target7" />
 
             <Button
                 android:id="@+id/target7"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player7"
                 app:layout_constraintEnd_toEndOf="@+id/player7"
@@ -207,24 +228,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="0"
             app:layout_row="2">
 
             <Button
                 android:id="@+id/player8"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target8" />
 
             <Button
                 android:id="@+id/target8"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player8"
                 app:layout_constraintEnd_toEndOf="@+id/player8"
@@ -233,24 +257,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="4"
             app:layout_row="2">
 
             <Button
                 android:id="@+id/player9"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target9" />
 
             <Button
                 android:id="@+id/target9"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player9"
                 app:layout_constraintEnd_toEndOf="@+id/player9"
@@ -259,24 +286,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="0"
             app:layout_row="3">
 
             <Button
                 android:id="@+id/player10"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target10" />
 
             <Button
                 android:id="@+id/target10"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player10"
                 app:layout_constraintEnd_toEndOf="@+id/player10"
@@ -285,24 +315,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="4"
             app:layout_row="3">
 
             <Button
                 android:id="@+id/player11"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target11" />
 
             <Button
                 android:id="@+id/target11"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player11"
                 app:layout_constraintEnd_toEndOf="@+id/player11"
@@ -311,24 +344,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="0"
             app:layout_row="4">
 
             <Button
                 android:id="@+id/player12"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target12" />
 
             <Button
                 android:id="@+id/target12"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player12"
                 app:layout_constraintEnd_toEndOf="@+id/player12"
@@ -337,24 +373,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="1"
             app:layout_row="4">
 
             <Button
                 android:id="@+id/player13"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target13" />
 
             <Button
                 android:id="@+id/target13"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player13"
                 app:layout_constraintEnd_toEndOf="@+id/player13"
@@ -363,24 +402,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="2"
             app:layout_row="4">
 
             <Button
                 android:id="@+id/player14"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target14" />
 
             <Button
                 android:id="@+id/target14"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player14"
                 app:layout_constraintEnd_toEndOf="@+id/player14"
@@ -389,24 +431,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="3"
             app:layout_row="4">
 
             <Button
                 android:id="@+id/player15"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target15" />
 
             <Button
                 android:id="@+id/target15"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player15"
                 app:layout_constraintEnd_toEndOf="@+id/player15"
@@ -415,24 +460,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fab_margin"
+            android:layout_width="@dimen/game_layout_width"
+            android:layout_height="@dimen/game_layout_height"
             app:layout_column="4"
             app:layout_row="4">
 
             <Button
                 android:id="@+id/player16"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="@dimen/game_button_player_width"
+                android:layout_height="@dimen/game_button_player_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_name_role"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/target16" />
 
             <Button
                 android:id="@+id/target16"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
+                android:layout_width="@dimen/game_button_target_width"
+                android:layout_height="@dimen/game_button_target_height"
+                android:textSize="@dimen/game_button_text_size"
                 android:text="@string/default_target"
                 app:layout_constraintBottom_toTopOf="@+id/player16"
                 app:layout_constraintEnd_toEndOf="@+id/player16"
@@ -441,7 +489,8 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/fullscreen_content"
+            app:layout_gravity="center"
+            android:id="@+id/content_text"
             app:layout_row="1"
             app:layout_column="1"
             app:layout_columnSpan="3"
