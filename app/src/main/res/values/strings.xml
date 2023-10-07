@@ -9,13 +9,14 @@
     <string name="add_game">Add game</string>
 
     <string name="title_activity_game">GameActivity</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="game_status_content">"Game #$gameId loading…"</string>
     <string name="go_back">Go back</string>
     <string name="add_player">Add player</string>
     <string name="player_name">Player name:</string>
     <string name="default_name_role">Name\nRole</string>
     <string name="default_target">Target</string>
 
+    <string name="button_show">Show</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>

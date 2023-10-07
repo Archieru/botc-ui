@@ -73,9 +73,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun switchToGame(id: Int) {
+    private fun switchToGame(gameId: Int) {
         val intent = Intent(this, GameActivity::class.java)
-        intent.putExtra("gameId", id)
+        intent.putExtra("gameId", gameId)
         startActivity(intent)
     }
 }
