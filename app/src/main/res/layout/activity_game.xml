@@ -1,64 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="fill_horizontal|fill_vertical"
     android:background="?attr/fullscreenBackgroundColor"
+    android:orientation="vertical"
     android:theme="@style/ThemeOverlay.BotcUI.FullscreenContainer"
     tools:context=".GameActivity">
-
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="99">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1" >
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <include
                 android:id="@+id/player1"
-                layout="@layout/player_layout"
+                layout="@layout/layout_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <include
                 android:id="@+id/player2"
-                layout="@layout/player_layout"
+                layout="@layout/layout_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <include
                 android:id="@+id/player3"
-                layout="@layout/player_layout"
+                layout="@layout/layout_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <include
                 android:id="@+id/player4"
-                layout="@layout/player_layout"
+                layout="@layout/layout_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <include
                 android:id="@+id/player5"
-                layout="@layout/player_layout"
+                layout="@layout/layout_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -67,8 +61,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="3" >
+            android:layout_weight="3">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -78,21 +71,21 @@
 
                 <include
                     android:id="@+id/player6"
-                    layout="@layout/player_layout"
+                    layout="@layout/layout_player"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
                 <include
                     android:id="@+id/player8"
-                    layout="@layout/player_layout"
+                    layout="@layout/layout_player"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
                 <include
                     android:id="@+id/player10"
-                    layout="@layout/player_layout"
+                    layout="@layout/layout_player"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
@@ -111,26 +104,26 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1" >
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <include
                     android:id="@+id/player7"
-                    layout="@layout/player_layout"
+                    layout="@layout/layout_player"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
                 <include
                     android:id="@+id/player9"
-                    layout="@layout/player_layout"
+                    layout="@layout/layout_player"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
                 <include
                     android:id="@+id/player11"
-                    layout="@layout/player_layout"
+                    layout="@layout/layout_player"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
@@ -140,40 +133,41 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1" >
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <include
                 android:id="@+id/player12"
-                layout="@layout/player_layout"
+                layout="@layout/layout_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <include
                 android:id="@+id/player13"
-                layout="@layout/player_layout"
+                layout="@layout/layout_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <include
                 android:id="@+id/player14"
-                layout="@layout/player_layout"
+                layout="@layout/layout_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <include
                 android:id="@+id/player15"
-                layout="@layout/player_layout"
+                layout="@layout/layout_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <include
                 android:id="@+id/player16"
-                layout="@layout/player_layout"
+                layout="@layout/layout_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -183,35 +177,45 @@
 
     <LinearLayout
         android:id="@+id/floating_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
         android:orientation="horizontal"
-        android:layout_marginBottom="16dp">
+        android:layout_weight="1">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+
+        <Button
             android:id="@+id/back"
-            android:layout_marginHorizontal="@dimen/fab_margin"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/fab_margin"
             android:contentDescription="@string/go_back"
-            app:srcCompat="@android:drawable/ic_media_previous" />
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/back"
+            style="?android:attr/buttonBarButtonStyle" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/progress_game"
-            android:layout_marginHorizontal="@dimen/fab_margin"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/fab_margin"
             android:contentDescription="@string/go_back"
-            app:srcCompat="@android:drawable/ic_media_play" />
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/next"
+            style="?android:attr/buttonBarButtonStyle" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/add_player"
-            android:layout_marginHorizontal="@dimen/fab_margin"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/add_game"
-            app:srcCompat="@android:drawable/ic_menu_add" />
+            android:layout_marginHorizontal="@dimen/fab_margin"
+            android:contentDescription="@string/add_player"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/add_player"
+            style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

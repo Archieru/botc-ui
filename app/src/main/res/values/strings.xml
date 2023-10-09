@@ -5,6 +5,7 @@
     <string name="first_fragment_label">Game list</string>
     <string name="second_fragment_label">Game screen</string>
     <string name="next">Next</string>
+    <string name="back">&lt; Back</string>
     <string name="previous">Previous</string>
     <string name="add_game">Add game</string>
 
@@ -14,6 +15,7 @@
     <string name="add_player">Add player</string>
     <string name="player_name">Player name:</string>
     <string name="default_name_role">Name\nRole</string>
+    <string name="role_icon">Role icon</string>
     <string name="default_target">Target</string>
 
     <string name="button_show">Show</string>

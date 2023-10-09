@@ -3,22 +3,24 @@ package com.bar42.botcui
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.bar42.botcui.databinding.ActivityGameBinding
-import com.bar42.botcui.databinding.PlayerLayoutBinding
+import com.bar42.botcui.databinding.LayoutPlayerBinding
 import com.bar42.botcui.fetcher.BaseFetcher
 import com.bar42.botcui.fetcher.GameInterface
 import com.bar42.botcui.fetcher.PlayerInterface
 import com.bar42.botcui.model.Game
 import com.bar42.botcui.model.Player
 import com.bar42.botcui.model.enums.GameStatus
-import com.bar42.botcui.model.enums.RoleName
 import com.bar42.botcui.model.enums.Scenario
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -163,50 +165,42 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun hideButtons() {
-        binding.player1.nameRole.visibility = View.INVISIBLE
-        binding.player1.target.visibility = View.INVISIBLE
-        binding.player2.nameRole.visibility = View.INVISIBLE
-        binding.player2.target.visibility = View.INVISIBLE
-        binding.player3.nameRole.visibility = View.INVISIBLE
-        binding.player3.target.visibility = View.INVISIBLE
-        binding.player4.nameRole.visibility = View.INVISIBLE
-        binding.player4.target.visibility = View.INVISIBLE
-        binding.player5.nameRole.visibility = View.INVISIBLE
-        binding.player5.target.visibility = View.INVISIBLE
-        binding.player6.nameRole.visibility = View.INVISIBLE
-        binding.player6.target.visibility = View.INVISIBLE
-        binding.player7.nameRole.visibility = View.INVISIBLE
-        binding.player7.target.visibility = View.INVISIBLE
-        binding.player8.nameRole.visibility = View.INVISIBLE
-        binding.player8.target.visibility = View.INVISIBLE
-        binding.player9.nameRole.visibility = View.INVISIBLE
-        binding.player9.target.visibility = View.INVISIBLE
-        binding.player10.nameRole.visibility = View.INVISIBLE
-        binding.player10.target.visibility = View.INVISIBLE
-        binding.player11.nameRole.visibility = View.INVISIBLE
-        binding.player11.target.visibility = View.INVISIBLE
-        binding.player12.nameRole.visibility = View.INVISIBLE
-        binding.player12.target.visibility = View.INVISIBLE
-        binding.player13.nameRole.visibility = View.INVISIBLE
-        binding.player13.target.visibility = View.INVISIBLE
-        binding.player14.nameRole.visibility = View.INVISIBLE
-        binding.player14.target.visibility = View.INVISIBLE
-        binding.player15.nameRole.visibility = View.INVISIBLE
-        binding.player15.target.visibility = View.INVISIBLE
-        binding.player16.nameRole.visibility = View.INVISIBLE
-        binding.player16.target.visibility = View.INVISIBLE
+        binding.player1.container.visibility = View.INVISIBLE
+        binding.player2.container.visibility = View.INVISIBLE
+        binding.player3.container.visibility = View.INVISIBLE
+        binding.player4.container.visibility = View.INVISIBLE
+        binding.player5.container.visibility = View.INVISIBLE
+        binding.player6.container.visibility = View.INVISIBLE
+        binding.player7.container.visibility = View.INVISIBLE
+        binding.player8.container.visibility = View.INVISIBLE
+        binding.player9.container.visibility = View.INVISIBLE
+        binding.player10.container.visibility = View.INVISIBLE
+        binding.player11.container.visibility = View.INVISIBLE
+        binding.player12.container.visibility = View.INVISIBLE
+        binding.player13.container.visibility = View.INVISIBLE
+        binding.player14.container.visibility = View.INVISIBLE
+        binding.player15.container.visibility = View.INVISIBLE
+        binding.player16.container.visibility = View.INVISIBLE
     }
 
-    private fun populateButtons(player: Player, playerLayout: PlayerLayoutBinding) {
-        val roleName = if (player.role == null || player.role!!.name == RoleName.Empty) "" else player.role!!.name.name
-        val buttonText = "${player.name}\n$roleName"
-        val targetText = if (player.target == RoleName.Empty) "" else player.target.name
+    private fun populateButtons(player: Player, playerLayout: LayoutPlayerBinding) {
+        val roleName = if (player.role == null) "Empty" else player.role!!.name.name
+        val targetText = player.target.name
 
-        playerLayout.nameRole.text = buttonText
-        playerLayout.nameRole.visibility = View.VISIBLE
+        playerLayout.container.visibility = View.VISIBLE
+        playerLayout.name.text = player.name
+        playerLayout.role.setImageDrawable(getDrawable(roleName))
         val color = if (player.isEvil) getColor(R.color.minion) else getColor(R.color.townfolk)
-        playerLayout.nameRole.setBackgroundColor(color)
-        playerLayout.target.text = targetText
-        playerLayout.target.visibility = View.VISIBLE
+        playerLayout.role.setBackgroundColor(color)
+        playerLayout.target.setImageDrawable(getDrawable(targetText))
+    }
+
+    private fun getDrawable(name: String) : Drawable {
+        val resources: Resources = this.resources
+        val resourceId = resources.getIdentifier(
+            "icon_${name.lowercase()}", "drawable",
+            this.packageName
+        )
+        return ContextCompat.getDrawable(this.applicationContext, resourceId)!!
     }
 }

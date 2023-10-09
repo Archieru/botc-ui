@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fillGameList(gamesList: ListView) {
-        val adapter = ArrayAdapter<String>(this, R.layout.game_item_layout, mutableListOf())
+        val adapter = ArrayAdapter<String>(this, R.layout.layout_game_item, mutableListOf())
         gamesList.adapter = adapter
         lifecycleScope.launch (Dispatchers.IO) {
             val gamesAvailable = BaseFetcher.gameInterface.getAll().body()!!

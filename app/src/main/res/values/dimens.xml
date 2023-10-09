@@ -1,10 +1,12 @@
 <resources>
-    <dimen name="fab_margin">30dp</dimen>
+    <dimen name="fab_margin">10dp</dimen>
     <dimen name="game_layout_width">75dp</dimen>
-    <dimen name="game_layout_height">100dp</dimen>
+    <dimen name="game_layout_height">75dp</dimen>
     <dimen name="game_button_text_size">8sp</dimen>
-    <dimen name="game_button_player_width">100dp</dimen>
-    <dimen name="game_button_player_height">75dp</dimen>
-    <dimen name="game_button_target_width">75dp</dimen>
-    <dimen name="game_button_target_height">50dp</dimen>
+    <dimen name="game_button_player_width">50dp</dimen>
+    <dimen name="game_button_player_height">50dp</dimen>
+    <dimen name="game_button_target_width">30dp</dimen>
+    <dimen name="game_button_target_height">30dp</dimen>
+    <dimen name="start_info_role_width">150dp</dimen>
+    <dimen name="start_info_role_height">150dp</dimen>
 </resources>
