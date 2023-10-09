@@ -22,5 +22,5 @@ interface GameInterface {
     suspend fun getGame(@Path("gameId") gameId: Int): Response<Game>
 
     @POST("games/{gameId}/deal/{scenario}")
-    suspend fun dealGame(@Path("gameId") gameId: Int, @Path("scenario") scenario: Scenario)
+    suspend fun dealGame(@Path("gameId") gameId: Int, @Path("scenario") scenario: Scenario): Response<Void>
 }

@@ -12,18 +12,14 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
 import com.bar42.botcui.databinding.ActivityGameBinding
 import com.bar42.botcui.databinding.LayoutPlayerBinding
-import com.bar42.botcui.fetcher.BaseFetcher
-import com.bar42.botcui.fetcher.GameInterface
-import com.bar42.botcui.fetcher.PlayerInterface
+import com.bar42.botcui.fetcher.GameFetcher
+import com.bar42.botcui.fetcher.PlayerFetcher
 import com.bar42.botcui.model.Game
 import com.bar42.botcui.model.Player
 import com.bar42.botcui.model.enums.GameStatus
 import com.bar42.botcui.model.enums.Scenario
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 /**
@@ -36,9 +32,8 @@ class GameActivity : AppCompatActivity() {
     private lateinit var contentText: TextView
     private lateinit var game: Game
     private var gameId: Int = 0
-    private var seated = mapOf<Int, Player>()
-    private val gameInterface: GameInterface = BaseFetcher.gameInterface
-    private val playerInterface: PlayerInterface = BaseFetcher.playerInterface
+    private val gameFetcher = GameFetcher(this)
+    private val playerFetcher = PlayerFetcher(this)
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,9 +86,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun dealGame() {
-        lifecycleScope.launch (Dispatchers.IO) {
-            gameInterface.dealGame(gameId, Scenario.TroubleBrewing)
-        }
+        gameFetcher.dealGame(gameId, Scenario.TroubleBrewing)
     }
 
     private fun createPlayerDialog() {
@@ -104,9 +97,7 @@ class GameActivity : AppCompatActivity() {
         builder.setView(input)
 
         builder.setPositiveButton(R.string.dialog_ok) { _, _ ->
-            lifecycleScope.launch (Dispatchers.IO) {
-                playerInterface.addPlayerToGame(gameId, input.text.toString())
-            }
+            playerFetcher.addPlayerToGame(gameId, input.text.toString())
         }
 
         builder.setNegativeButton(R.string.dialog_cancel) { dialog, _ ->
@@ -117,14 +108,15 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun updateGameField() {
-        lifecycleScope.launch (Dispatchers.IO) {
-            game = gameInterface.getGame(gameId).body()!!
-            lifecycleScope.launch (Dispatchers.Main) {
-                seated = seatPlayers(game.players)
-                var statusText = "Game ${game.id} : ${game.status}"
-                for (player in game.players) { statusText += " [${player.name}]" }
-                binding.contentText.text = statusText
-            }
+        gameFetcher.getGame(gameId) {
+            seatPlayers(it.players)
+
+            var gameStatusText = "Game ${it.id} : ${it.status}"
+            for (player in it.players) { gameStatusText += " [${player.name}]" }
+            binding.contentText.text = gameStatusText
+
+            game = it
+            Any()
         }
     }
 

@@ -7,16 +7,13 @@ import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.bar42.botcui.databinding.ActivityMainBinding
-import com.bar42.botcui.fetcher.BaseFetcher
+import com.bar42.botcui.fetcher.GameFetcher
 import com.bar42.botcui.model.enums.GameStatus
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val gameFetcher = GameFetcher(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +26,8 @@ class MainActivity : AppCompatActivity() {
         fillGameList(binding.gamesList)
 
         binding.add.setOnClickListener {
-            lifecycleScope.launch (Dispatchers.IO) {
-                val gameCreated = BaseFetcher.gameInterface.addGame().body()!!
-                withContext(Dispatchers.Main) {
-                    switchToGame(gameCreated.id!!)
-                }
+            gameFetcher.addGame {
+                switchToGame(it.id!!)
             }
         }
     }
@@ -57,15 +51,13 @@ class MainActivity : AppCompatActivity() {
     private fun fillGameList(gamesList: ListView) {
         val adapter = ArrayAdapter<String>(this, R.layout.layout_game_item, mutableListOf())
         gamesList.adapter = adapter
-        lifecycleScope.launch (Dispatchers.IO) {
-            val gamesAvailable = BaseFetcher.gameInterface.getAll().body()!!
-                .filter { it.status != GameStatus.FINISHED }
+        gameFetcher.getAll {games ->
+            val gamesAvailable = games.filter { it.status != GameStatus.FINISHED }
                 .map { "${it.id} : ${it.status}" }
-            withContext(Dispatchers.Main) {
-                adapter.clear()
-                adapter.addAll(gamesAvailable)
-            }
+            adapter.clear()
+            adapter.addAll(gamesAvailable)
         }
+
         gamesList.setOnItemClickListener { parent, view, position, id ->
             val elementText = gamesList.adapter.getItem(position).toString()
             val gameId = elementText.split(":")[0].trim().toInt()

@@ -7,21 +7,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
 import com.bar42.botcui.databinding.ActivityStartInfoBinding
-import com.bar42.botcui.fetcher.BaseFetcher
-import com.bar42.botcui.model.enums.RoleName
+import com.bar42.botcui.fetcher.GameFetcher
+import com.bar42.botcui.fetcher.PlayerFetcher
 import com.bar42.botcui.model.enums.RoleType
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class StartInfoActivity : AppCompatActivity() {
+    private val playerFetcher = PlayerFetcher(this)
+    private var gameId: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityStartInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val gameId = intent.getIntExtra("gameId", 0)
+        gameId = intent.getIntExtra("gameId", 0)
         val playerNames = intent.getStringArrayListExtra("playerNames")!!.toMutableList()
         val playerName = playerNames.removeAt(0)
 
@@ -53,33 +52,26 @@ class StartInfoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        lifecycleScope.launch (Dispatchers.IO) {
-            val role = BaseFetcher.playerInterface.getPlayerStartInfo(gameId, playerName).body()!!.role!!
-            var bluffs: MutableList<RoleName> = mutableListOf()
+        playerFetcher.getPlayerStartInfo(gameId, playerName) {
+            val role = it.role!!
 
+            binding.role.text = role.name.name
+            binding.roleIcon.setImageDrawable(getDrawable(role.name.name))
+            binding.description.text = role.description
 
-            lifecycleScope.launch (Dispatchers.Main) {
-                if (role.type == RoleType.DEMON) {
-                    showBluffs()
-                    bluffs = BaseFetcher.gameInterface.getGame(gameId).body()!!.bluffs
-                }
-                binding.role.text = role.name.name
-                binding.roleIcon.setImageDrawable(getDrawable(role.name.name))
-                if (bluffs.isEmpty()) {
-                    binding.description.text = role.description
-                } else {
-                    var text = role.description + "\n\nBluffs: "
-                    for (bluff in bluffs) {
-                        text += "[$bluff] "
-                    }
-                    binding.description.text = text
-                }
+            if (role.type == RoleType.DEMON) {
+                showBluffs()
             }
         }
     }
 
     private fun showBluffs() {
-
+        val gameFetcher = GameFetcher(this)
+        gameFetcher.getGame(gameId) {
+            val bluffs = it.bluffs
+            // TODO
+            Any()
+        }
     }
 
     private fun getDrawable(name: String) : Drawable {
