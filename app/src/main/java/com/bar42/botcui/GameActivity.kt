@@ -3,18 +3,16 @@ package com.bar42.botcui
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.bar42.botcui.databinding.ActivityGameBinding
 import com.bar42.botcui.databinding.LayoutPlayerBinding
 import com.bar42.botcui.fetcher.GameFetcher
+import com.bar42.botcui.fetcher.ImageFetcher
 import com.bar42.botcui.fetcher.PlayerFetcher
 import com.bar42.botcui.model.Game
 import com.bar42.botcui.model.Player
@@ -34,6 +32,7 @@ class GameActivity : AppCompatActivity() {
     private var gameId: Int = 0
     private val gameFetcher = GameFetcher(this)
     private val playerFetcher = PlayerFetcher(this)
+    val imageFetcher = ImageFetcher(this)
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -176,23 +175,11 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun populateButtons(player: Player, playerLayout: LayoutPlayerBinding) {
-        val roleName = if (player.role == null) "Empty" else player.role!!.name.name
-        val targetText = player.target.name
-
         playerLayout.container.visibility = View.VISIBLE
         playerLayout.name.text = player.name
-        playerLayout.role.setImageDrawable(getDrawable(roleName))
+        playerLayout.role.setImageDrawable(imageFetcher.getDrawable(player.role))
         val color = if (player.isEvil) getColor(R.color.minion) else getColor(R.color.townfolk)
         playerLayout.role.setBackgroundColor(color)
-        playerLayout.target.setImageDrawable(getDrawable(targetText))
-    }
-
-    private fun getDrawable(name: String) : Drawable {
-        val resources: Resources = this.resources
-        val resourceId = resources.getIdentifier(
-            "icon_${name.lowercase()}", "drawable",
-            this.packageName
-        )
-        return ContextCompat.getDrawable(this.applicationContext, resourceId)!!
+        playerLayout.target.setImageDrawable(imageFetcher.getDrawable(player.target))
     }
 }

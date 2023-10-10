@@ -13,6 +13,7 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +36,13 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/role"
             android:layout_width="@dimen/game_button_player_width"
             android:layout_height="@dimen/game_button_player_height"
             android:layout_gravity="center"
             android:contentDescription="@string/default_name_role"
+            app:shapeAppearanceOverlay="@style/Circular"
             android:src="@drawable/icon_empty" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

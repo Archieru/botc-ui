@@ -25,7 +25,7 @@ class GameFetcher(context: AppCompatActivity): BaseFetcher(context) {
         }
     }
 
-    fun getGame(gameId: Int, callback: (Game) -> Any) {
+    fun getGame(gameId: Int, callback: (Game) -> Unit) {
         executeCallback(callback) {
             gameInterface.getGame(gameId)
         }

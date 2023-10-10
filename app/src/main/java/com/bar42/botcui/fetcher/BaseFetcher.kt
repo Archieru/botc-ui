@@ -1,6 +1,9 @@
 package com.bar42.botcui.fetcher
 
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
