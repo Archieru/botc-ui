@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bar42.botcui.databinding.ActivityStartInfoBinding
-import com.bar42.botcui.databinding.LayoutBluffBinding
 import com.bar42.botcui.fetcher.GameFetcher
 import com.bar42.botcui.fetcher.ImageFetcher
 import com.bar42.botcui.fetcher.PlayerFetcher
-import com.bar42.botcui.model.enums.RoleName
 import com.bar42.botcui.model.enums.RoleType
 
 class StartInfoActivity : AppCompatActivity() {
@@ -27,14 +25,6 @@ class StartInfoActivity : AppCompatActivity() {
         val playerName = playerNames.removeAt(0)
 
         binding.name.text = playerName
-        binding.buttonShow.setOnClickListener {
-            binding.buttonShow.visibility = View.INVISIBLE
-            binding.role.visibility = View.VISIBLE
-            binding.roleIcon.visibility = View.VISIBLE
-            binding.description.visibility = View.VISIBLE
-            binding.buttonNext.visibility = View.VISIBLE
-            binding.bluffs.visibility = View.VISIBLE
-        }
 
         binding.buttonNext.setOnClickListener {
             if (playerNames.size == 0) {
@@ -65,22 +55,29 @@ class StartInfoActivity : AppCompatActivity() {
             if (role.type == RoleType.DEMON) {
                 fillBluffs()
             }
+            binding.buttonShow.setOnClickListener {
+                binding.buttonShow.visibility = View.INVISIBLE
+                binding.role.visibility = View.VISIBLE
+                binding.roleIcon.visibility = View.VISIBLE
+                binding.description.visibility = View.VISIBLE
+                binding.buttonNext.visibility = View.VISIBLE
+                if (role.type == RoleType.DEMON) {
+                    binding.bluffs.bluffs.visibility = View.VISIBLE
+                }
+            }
+
         }
     }
 
     private fun fillBluffs() {
-        fun fillBluff(layout: LayoutBluffBinding, bluff: RoleName) {
-            layout.role.setImageDrawable(imageFetcher.getDrawable(bluff))
-            layout.name.text = bluff.name
-            layout.role.visibility = View.VISIBLE
-            layout.name.visibility = View.VISIBLE
-        }
-
         val gameFetcher = GameFetcher(this)
         gameFetcher.getGame(gameId) {
-            fillBluff(binding.bluff1, it.bluffs[0])
-            fillBluff(binding.bluff2, it.bluffs[1])
-            fillBluff(binding.bluff3, it.bluffs[2])
+            binding.bluffs.role1.setImageDrawable(imageFetcher.getDrawable(it.bluffs[0]))
+            binding.bluffs.name1.text = it.bluffs[0].name
+            binding.bluffs.role2.setImageDrawable(imageFetcher.getDrawable(it.bluffs[1]))
+            binding.bluffs.name2.text = it.bluffs[2].name
+            binding.bluffs.role3.setImageDrawable(imageFetcher.getDrawable(it.bluffs[2]))
+            binding.bluffs.name3.text = it.bluffs[2].name
         }
     }
 }

@@ -42,8 +42,8 @@
             android:id="@+id/role_icon"
             android:layout_width="@dimen/start_info_role_width"
             android:layout_height="@dimen/start_info_role_height"
-            android:contentDescription="@string/role_icon"
             android:layout_gravity="center"
+            android:contentDescription="@string/role_icon"
             android:src="@drawable/icon_empty"
             android:visibility="invisible" />
 
@@ -54,45 +54,19 @@
             android:textSize="20sp"
             android:visibility="invisible" />
 
-        <LinearLayout
+        <include
             android:id="@+id/bluffs"
+            layout="@layout/layout_bluff"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/start_info_role_height"
-            android:visibility="gone"
-            android:orientation="horizontal">
-
-            <include
-                android:id="@+id/bluff1"
-                layout="@layout/layout_bluff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1" />
-
-            <include
-                android:id="@+id/bluff2"
-                layout="@layout/layout_bluff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1" />
-
-            <include
-                android:id="@+id/bluff3"
-                layout="@layout/layout_bluff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
 
         <Button
             android:id="@+id/button_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/next"
-            android:visibility="invisible"
-            />
+            android:visibility="invisible" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
