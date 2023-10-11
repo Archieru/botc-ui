@@ -2,8 +2,10 @@ package com.bar42.botcui.model.enums
 
 enum class GameStatus {
     CREATED,
-    LOCKED,
+    PLAYERS_READY,
     DEALED,
-    STARTED,
+    FIRST_NIGHT,
+    DAY,
+    NIGHT,
     FINISHED
 }

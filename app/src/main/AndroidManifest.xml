@@ -18,7 +18,13 @@
             android:name=".StartInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".GameActivity"
+            android:name=".PlayerGatheringActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_game"
+            android:theme="@style/Theme.BotcUI.Fullscreen" />
+        <activity
+            android:name=".DealedGameActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:label="@string/title_activity_game"

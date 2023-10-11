@@ -28,7 +28,7 @@ class StartInfoActivity : AppCompatActivity() {
 
         binding.buttonNext.setOnClickListener {
             if (playerNames.size == 0) {
-                val intent = Intent(this, GameActivity::class.java)
+                val intent = Intent(this, DealedGameActivity::class.java)
                 intent.putExtra("gameId", gameId)
                 startActivity(intent)
             } else {
@@ -40,7 +40,7 @@ class StartInfoActivity : AppCompatActivity() {
         }
 
         binding.back.setOnClickListener {
-            val intent = Intent(this, GameActivity::class.java)
+            val intent = Intent(this, DealedGameActivity::class.java)
             intent.putExtra("gameId", gameId)
             startActivity(intent)
         }
@@ -75,7 +75,7 @@ class StartInfoActivity : AppCompatActivity() {
             binding.bluffs.role1.setImageDrawable(imageFetcher.getDrawable(it.bluffs[0]))
             binding.bluffs.name1.text = it.bluffs[0].name
             binding.bluffs.role2.setImageDrawable(imageFetcher.getDrawable(it.bluffs[1]))
-            binding.bluffs.name2.text = it.bluffs[2].name
+            binding.bluffs.name2.text = it.bluffs[1].name
             binding.bluffs.role3.setImageDrawable(imageFetcher.getDrawable(it.bluffs[2]))
             binding.bluffs.name3.text = it.bluffs[2].name
         }

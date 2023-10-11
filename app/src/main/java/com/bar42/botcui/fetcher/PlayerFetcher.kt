@@ -18,8 +18,8 @@ class PlayerFetcher(context: AppCompatActivity): BaseFetcher(context) {
         }
     }
 
-    fun addPlayerToGame(gameId: Int, name: String) {
-        executeRequest {
+    fun addPlayerToGame(gameId: Int, name: String, callback: (Player) -> Any = {}) {
+        executeCallback(callback) {
             playerInterface.addPlayerToGame(gameId, name)
         }
     }

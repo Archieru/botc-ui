@@ -1,9 +1,6 @@
 package com.bar42.botcui.fetcher
 
-import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,9 +25,13 @@ open class BaseFetcher(val context: AppCompatActivity) {
             }
         }
     }
-    fun <T>executeRequest(response: suspend () -> Response<T>) {
+
+    fun <T>executeCallback(callback: () -> Any, response: suspend () -> Response<T>) {
         context.lifecycleScope.launch (Dispatchers.IO) {
             response.invoke()
+            withContext(Dispatchers.Main) {
+                callback.invoke()
+            }
         }
     }
 }

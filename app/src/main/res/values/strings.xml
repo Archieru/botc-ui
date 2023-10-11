@@ -8,6 +8,7 @@
     <string name="back">&lt; Back</string>
     <string name="previous">Previous</string>
     <string name="add_game">Add game</string>
+    <string name="deal_game">Deal game</string>
 
     <string name="title_activity_game">GameActivity</string>
     <string name="game_status_content">"Game #$gameId loading…"</string>
@@ -20,6 +21,8 @@
     <string name="default_target">Target</string>
 
     <string name="button_show">Show</string>
+    <string name="button_show_roles">Show roles</string>
+    <string name="button_start_first_night">Start first night</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>

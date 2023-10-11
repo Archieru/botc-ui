@@ -1,6 +1,5 @@
 package com.bar42.botcui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,6 +8,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.bar42.botcui.databinding.ActivityMainBinding
 import com.bar42.botcui.fetcher.GameFetcher
+import com.bar42.botcui.fetcher.GameProgress
 import com.bar42.botcui.model.enums.GameStatus
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.add.setOnClickListener {
             gameFetcher.addGame {
-                switchToGame(it.id!!)
+                GameProgress(it, this).proceedGame()
             }
         }
     }
@@ -61,13 +61,8 @@ class MainActivity : AppCompatActivity() {
         gamesList.setOnItemClickListener { parent, view, position, id ->
             val elementText = gamesList.adapter.getItem(position).toString()
             val gameId = elementText.split(":")[0].trim().toInt()
-            switchToGame(gameId)
+            val status = GameStatus.valueOf(elementText.split(":")[1].trim())
+            GameProgress(gameId, status, this).openActivity(status)
         }
-    }
-
-    private fun switchToGame(gameId: Int) {
-        val intent = Intent(this, GameActivity::class.java)
-        intent.putExtra("gameId", gameId)
-        startActivity(intent)
     }
 }
