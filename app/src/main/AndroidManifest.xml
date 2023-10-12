@@ -18,6 +18,9 @@
             android:name=".StartInfoActivity"
             android:exported="false" />
         <activity
+            android:name=".EvilFirstNightActivity"
+            android:exported="false" />
+        <activity
             android:name=".PlayerGatheringActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
@@ -25,6 +28,12 @@
             android:theme="@style/Theme.BotcUI.Fullscreen" />
         <activity
             android:name=".DealedGameActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_game"
+            android:theme="@style/Theme.BotcUI.Fullscreen" />
+        <activity
+            android:name=".FirstNightActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:label="@string/title_activity_game"

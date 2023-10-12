@@ -36,4 +36,16 @@ class GameFetcher(context: AppCompatActivity): BaseFetcher(context) {
             gameInterface.dealGame(gameId, scenario)
         }
     }
+
+    fun startGame(gameId: Int, callback: () -> Unit) {
+        executeCallback(callback) {
+            gameInterface.startGame(gameId)
+        }
+    }
+
+    fun finishGame(gameId: Int, callback: () -> Unit) {
+        executeCallback(callback) {
+            gameInterface.finishGame(gameId)
+        }
+    }
 }

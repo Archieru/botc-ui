@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:text="@string/bluffs" />
+        android:text="@string/demon_bluffs" />
 
     <LinearLayout
         android:baselineAligned="false"

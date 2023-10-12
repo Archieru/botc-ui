@@ -12,10 +12,12 @@
 
     <string name="title_activity_game">GameActivity</string>
     <string name="game_status_content">"Game #$gameId loading…"</string>
+    <string name="minions_your_demon">"This is your demon:"</string>
+    <string name="demon_your_minions">"These are your minions:"</string>
+    <string name="demon_bluffs">This roles are not in play:</string>
     <string name="go_back">Go back</string>
     <string name="add_player">Add player</string>
     <string name="player_name">Player name:</string>
-    <string name="bluffs">Bluffs:</string>
     <string name="default_name_role">Name\nRole</string>
     <string name="role_icon">Role icon</string>
     <string name="default_target">Target</string>
@@ -23,6 +25,9 @@
     <string name="button_show">Show</string>
     <string name="button_show_roles">Show roles</string>
     <string name="button_start_first_night">Start first night</string>
+    <string name="button_start_day">Start the day</string>
+    <string name="button_start_night">Start the night</string>
+    <string name="button_next_role">Next role</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>

@@ -13,7 +13,7 @@ import com.bar42.botcui.fetcher.PlayerFetcher
 import com.bar42.botcui.model.Game
 import com.bar42.botcui.model.Player
 
-open class GameActivity : AppCompatActivity() {
+open class BaseGameActivity : AppCompatActivity() {
     protected val gameFetcher = GameFetcher(this)
     protected val playerFetcher = PlayerFetcher(this)
     protected val imageFetcher = ImageFetcher(this)
@@ -46,9 +46,9 @@ open class GameActivity : AppCompatActivity() {
             hideButtons()
             seatPlayers(it.players)
 
-            var gameStatusText = "Game ${it.id} : ${it.status}"
-            for (player in it.players) { gameStatusText += " [${player.name}]" }
-            binding.contentText.text = gameStatusText
+//            var gameStatusText = "Game ${it.id} : ${it.status}"
+//            for (player in it.players) { gameStatusText += " [${player.name}]" }
+//            binding.contentText.text = gameStatusText
 
             game = it
             Any()
@@ -115,5 +115,18 @@ open class GameActivity : AppCompatActivity() {
         val color = if (player.isEvil) getColor(R.color.minion) else getColor(R.color.townfolk)
         playerLayout.role.setBackgroundColor(color)
         playerLayout.target.setImageDrawable(imageFetcher.getDrawable(player.target))
+    }
+
+    protected fun setOnPlayerClick(callback: (Player?, LayoutPlayerBinding) -> Unit) {
+        for (playerLayout in listOf(
+            binding.player1, binding.player2, binding.player3, binding.player4,
+            binding.player5, binding.player6, binding.player7, binding.player8,
+            binding.player9, binding.player10, binding.player11, binding.player12,
+            binding.player13, binding.player14, binding.player15, binding.player16)) {
+            val player = game.players.firstOrNull { it.name == playerLayout.name.text }
+            playerLayout.container.setOnClickListener {
+                callback.invoke(player, playerLayout)
+            }
+        }
     }
 }

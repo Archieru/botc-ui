@@ -3,7 +3,7 @@ package com.bar42.botcui
 import android.content.Intent
 import android.os.Bundle
 
-class DealedGameActivity : GameActivity() {
+class DealedGameActivity : BaseGameActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.progressGame.setText(R.string.button_start_first_night)

@@ -7,7 +7,7 @@
     android:background="?attr/fullscreenBackgroundColor"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.BotcUI.FullscreenContainer"
-    tools:context=".GameActivity">
+    tools:context=".BaseGameActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

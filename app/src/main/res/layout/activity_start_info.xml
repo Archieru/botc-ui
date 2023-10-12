@@ -73,9 +73,9 @@
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start|top"
+        android:layout_gravity="start|bottom"
         android:contentDescription="@string/go_back"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:srcCompat="@android:drawable/ic_media_previous" />
 </androidx.constraintlayout.widget.ConstraintLayout>

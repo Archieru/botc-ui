@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.widget.EditText
 
-class PlayerGatheringActivity : GameActivity() {
+class PlayerGatheringActivity : BaseGameActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

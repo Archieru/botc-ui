@@ -26,4 +26,10 @@ interface GameInterface {
         @Path("gameId") gameId: Int,
         @Path("scenario") scenario: Scenario
     ): Response<Void>
+
+    @POST("/games/{gameId}/start")
+    fun startGame(@Path("gameId") gameId: Int): Response<Void>
+
+    @POST("/games/{gameId}/finish")
+    fun finishGame(@Path("gameId") gameId: Int): Response<Void>
 }
