@@ -18,4 +18,10 @@ interface PlayerInterface {
 
     @GET("games/{gameId}/players/{name}/startinfo")
     suspend fun getPlayerStartInfo(@Path("gameId") gameId: Int, @Path("name") name: String): Response<Player>
+
+    @POST("games/{gameId}/players/{name}/kill")
+    suspend fun killPlayer(@Path("gameId") gameId: Int, @Path("name") name: String): Response<Void>
+
+    @POST("games/{gameId}/players/{name}/resurrect")
+    suspend fun resurrectPlayer(@Path("gameId") gameId: Int, @Path("name") name: String): Response<Void>
 }

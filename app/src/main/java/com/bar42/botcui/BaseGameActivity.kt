@@ -12,6 +12,7 @@ import com.bar42.botcui.fetcher.ImageFetcher
 import com.bar42.botcui.fetcher.PlayerFetcher
 import com.bar42.botcui.model.Game
 import com.bar42.botcui.model.Player
+import com.bar42.botcui.model.enums.RoleName
 
 open class BaseGameActivity : AppCompatActivity() {
     protected val gameFetcher = GameFetcher(this)
@@ -21,11 +22,10 @@ open class BaseGameActivity : AppCompatActivity() {
     protected var gameId: Int = 0
     protected lateinit var game: Game
     protected lateinit var binding: ActivityGameBinding
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         gameId = intent.getIntExtra("gameId", 0)
-        updateGameField()
 
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -37,21 +37,22 @@ open class BaseGameActivity : AppCompatActivity() {
         }
 
         binding.back.setOnClickListener {
-           startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
+
+        updateGameField(getString(R.string.activity_ready))
     }
 
-    protected fun updateGameField() {
+    protected fun updateGameField(status: String) {
+        updateGameField { binding.contentText.text = status }
+    }
+
+    protected fun updateGameField(callback: (Game) -> Unit) {
         gameFetcher.getGame(gameId) {
-            hideButtons()
-            seatPlayers(it.players)
-
-//            var gameStatusText = "Game ${it.id} : ${it.status}"
-//            for (player in it.players) { gameStatusText += " [${player.name}]" }
-//            binding.contentText.text = gameStatusText
-
             game = it
-            Any()
+            hidePlayers()
+            seatPlayers(it.players)
+            callback.invoke(it)
         }
     }
 
@@ -89,7 +90,7 @@ open class BaseGameActivity : AppCompatActivity() {
         return ret
     }
 
-    protected fun hideButtons() {
+    protected fun hidePlayers() {
         binding.player1.container.visibility = View.INVISIBLE
         binding.player2.container.visibility = View.INVISIBLE
         binding.player3.container.visibility = View.INVISIBLE
@@ -112,9 +113,16 @@ open class BaseGameActivity : AppCompatActivity() {
         playerLayout.container.visibility = View.VISIBLE
         playerLayout.name.text = player.name
         playerLayout.role.setImageDrawable(imageFetcher.getDrawable(player.role))
-        val color = if (player.isEvil) getColor(R.color.minion) else getColor(R.color.townfolk)
+        val color = if (!player.isAlive) getColor(R.color.dead) else
+            if (player.isEvil) getColor(R.color.minion)
+            else getColor(R.color.townfolk)
         playerLayout.role.setBackgroundColor(color)
-        playerLayout.target.setImageDrawable(imageFetcher.getDrawable(player.target))
+        if (player.target == RoleName.Empty) {
+            playerLayout.target.visibility = View.INVISIBLE
+        } else {
+            playerLayout.target.visibility = View.VISIBLE
+            playerLayout.target.setImageDrawable(imageFetcher.getDrawable(player.target))
+        }
     }
 
     protected fun setOnPlayerClick(callback: (Player?, LayoutPlayerBinding) -> Unit) {
@@ -122,7 +130,8 @@ open class BaseGameActivity : AppCompatActivity() {
             binding.player1, binding.player2, binding.player3, binding.player4,
             binding.player5, binding.player6, binding.player7, binding.player8,
             binding.player9, binding.player10, binding.player11, binding.player12,
-            binding.player13, binding.player14, binding.player15, binding.player16)) {
+            binding.player13, binding.player14, binding.player15, binding.player16
+        )) {
             val player = game.players.firstOrNull { it.name == playerLayout.name.text }
             playerLayout.container.setOnClickListener {
                 callback.invoke(player, playerLayout)

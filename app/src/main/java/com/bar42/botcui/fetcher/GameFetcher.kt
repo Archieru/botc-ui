@@ -19,9 +19,9 @@ class GameFetcher(context: AppCompatActivity): BaseFetcher(context) {
         }
     }
 
-    fun addGame(game: Game, callback: (Game) -> Any) {
+    fun saveGame(game: Game, callback: (Game) -> Any) {
         executeCallback(callback) {
-            gameInterface.addGame(game)
+            gameInterface.saveGame(game)
         }
     }
 
@@ -40,6 +40,18 @@ class GameFetcher(context: AppCompatActivity): BaseFetcher(context) {
     fun startGame(gameId: Int, callback: () -> Unit) {
         executeCallback(callback) {
             gameInterface.startGame(gameId)
+        }
+    }
+
+    fun startDay(gameId: Int, callback: () -> Unit) {
+        executeCallback(callback) {
+            gameInterface.startDay(gameId)
+        }
+    }
+
+    fun startNight(gameId: Int, callback: () -> Unit) {
+        executeCallback(callback) {
+            gameInterface.startNight(gameId)
         }
     }
 

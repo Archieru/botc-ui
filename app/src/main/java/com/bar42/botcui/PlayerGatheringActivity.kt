@@ -13,7 +13,6 @@ class PlayerGatheringActivity : BaseGameActivity() {
 
         binding.mainAction.setOnClickListener {
             createPlayerDialog()
-            updateGameField()
         }
     }
 
@@ -25,7 +24,10 @@ class PlayerGatheringActivity : BaseGameActivity() {
         builder.setView(input)
 
         builder.setPositiveButton(R.string.dialog_ok) { _, _ ->
-            playerFetcher.addPlayerToGame(gameId, input.text.toString())
+            val playerName = input.text.toString()
+            playerFetcher.addPlayerToGame(gameId, playerName) {
+                updateGameField(getString(R.string.player_added, playerName))
+            }
         }
 
         builder.setNegativeButton(R.string.dialog_cancel) { dialog, _ ->

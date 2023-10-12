@@ -2,8 +2,10 @@ package com.bar42.botcui.fetcher
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import com.bar42.botcui.DayActivity
 import com.bar42.botcui.DealedGameActivity
 import com.bar42.botcui.EvilFirstNightActivity
+import com.bar42.botcui.OtherNightActivity
 import com.bar42.botcui.PlayerGatheringActivity
 import com.bar42.botcui.model.Game
 import com.bar42.botcui.model.enums.GameStatus
@@ -35,8 +37,8 @@ class GameProgress {
             GameStatus.PLAYERS_READY -> switchTo(DealedGameActivity::class.java)
             GameStatus.DEALED -> switchTo(DealedGameActivity::class.java)
             GameStatus.FIRST_NIGHT -> switchTo(EvilFirstNightActivity::class.java)
-            GameStatus.DAY -> TODO("proceedGame GameStatus.DAY")
-            GameStatus.NIGHT -> TODO("proceedGame GameStatus.NIGHT")
+            GameStatus.DAY -> switchTo(DayActivity::class.java)
+            GameStatus.NIGHT -> switchTo(OtherNightActivity::class.java)
             GameStatus.FINISHED -> return
         }
     }
@@ -46,9 +48,9 @@ class GameProgress {
             GameStatus.CREATED -> dealGame()
             GameStatus.PLAYERS_READY -> dealGame()
             GameStatus.DEALED -> switchTo(EvilFirstNightActivity::class.java)
-            GameStatus.FIRST_NIGHT -> TODO("proceedGame GameStatus.DAY")
-            GameStatus.DAY -> TODO("proceedGame GameStatus.DAY")
-            GameStatus.NIGHT -> TODO("proceedGame GameStatus.NIGHT")
+            GameStatus.FIRST_NIGHT -> switchTo(DayActivity::class.java)
+            GameStatus.DAY -> switchTo(OtherNightActivity::class.java)
+            GameStatus.NIGHT -> switchTo(DayActivity::class.java)
             GameStatus.FINISHED -> return
         }
     }

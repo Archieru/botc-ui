@@ -13,7 +13,7 @@ interface GameInterface {
     suspend fun getAll(): Response<List<Game>>
 
     @POST("games")
-    suspend fun addGame(@Body game: Game): Response<Game>
+    suspend fun saveGame(@Body game: Game): Response<Game>
 
     @POST("games")
     suspend fun addGame(): Response<Game>
@@ -27,9 +27,15 @@ interface GameInterface {
         @Path("scenario") scenario: Scenario
     ): Response<Void>
 
-    @POST("/games/{gameId}/start")
-    fun startGame(@Path("gameId") gameId: Int): Response<Void>
+    @POST("games/{gameId}/start")
+    suspend fun startGame(@Path("gameId") gameId: Int): Response<Void>
 
-    @POST("/games/{gameId}/finish")
-    fun finishGame(@Path("gameId") gameId: Int): Response<Void>
+    @POST("games/{gameId}/day")
+    suspend fun startDay(@Path("gameId") gameId: Int): Response<Void>
+
+    @POST("games/{gameId}/night")
+    suspend fun startNight(@Path("gameId") gameId: Int): Response<Void>
+
+    @POST("games/{gameId}/finish")
+    suspend fun finishGame(@Path("gameId") gameId: Int): Response<Void>
 }

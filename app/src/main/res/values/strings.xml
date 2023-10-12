@@ -31,4 +31,6 @@
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
+    <string name="player_added">%1$s added</string>
+    <string name="activity_ready">Ready</string>
 </resources>
