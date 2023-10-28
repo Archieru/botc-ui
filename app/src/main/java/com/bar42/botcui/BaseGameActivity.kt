@@ -10,6 +10,7 @@ import com.bar42.botcui.fetcher.GameFetcher
 import com.bar42.botcui.fetcher.GameProgress
 import com.bar42.botcui.fetcher.ImageFetcher
 import com.bar42.botcui.fetcher.PlayerFetcher
+import com.bar42.botcui.fetcher.RoleFetcher
 import com.bar42.botcui.model.Game
 import com.bar42.botcui.model.Player
 import com.bar42.botcui.model.enums.RoleName
@@ -17,6 +18,7 @@ import com.bar42.botcui.model.enums.RoleName
 open class BaseGameActivity : AppCompatActivity() {
     protected val gameFetcher = GameFetcher(this)
     protected val playerFetcher = PlayerFetcher(this)
+    protected val roleFetcher = RoleFetcher(this)
     protected val imageFetcher = ImageFetcher(this)
 
     protected var gameId: Int = 0
@@ -43,16 +45,13 @@ open class BaseGameActivity : AppCompatActivity() {
         updateGameField(getString(R.string.activity_ready))
     }
 
-    protected fun updateGameField(status: String) {
-        updateGameField { binding.contentText.text = status }
-    }
-
-    protected fun updateGameField(callback: (Game) -> Unit) {
+    protected fun updateGameField(status: String? = null, callback: (Game) -> Unit = {}) {
         gameFetcher.getGame(gameId) {
             game = it
             hidePlayers()
             seatPlayers(it.players)
             callback.invoke(it)
+            if (status!= null) updateGameField { binding.contentText.text = status }
         }
     }
 

@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bar42.botcui.databinding.ActivityStartInfoBinding
 import com.bar42.botcui.fetcher.GameFetcher
 import com.bar42.botcui.fetcher.ImageFetcher
-import com.bar42.botcui.model.enums.RoleType
 
 class EvilFirstNightActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStartInfoBinding
@@ -29,6 +28,7 @@ class EvilFirstNightActivity : AppCompatActivity() {
         binding.buttonNext.setOnClickListener {
             binding.buttonNext.visibility = View.INVISIBLE
             binding.buttonShow.visibility = View.VISIBLE
+            binding.buttonShow.setText(R.string.next)
             binding.name.setText(R.string.demon_your_minions)
             binding.buttonNext.setOnClickListener {
                 val intent = Intent(this, FirstNightActivity::class.java)
@@ -46,19 +46,14 @@ class EvilFirstNightActivity : AppCompatActivity() {
         binding.buttonShow.setOnClickListener {
             binding.name.visibility = View.INVISIBLE
             binding.buttonShow.visibility = View.INVISIBLE
-            binding.role.visibility = View.VISIBLE
-            binding.roleIcon.visibility = View.VISIBLE
-            binding.description.visibility = View.VISIBLE
+            binding.role.visibility = View.INVISIBLE
+            binding.roleIcon.visibility = View.INVISIBLE
+            binding.description.visibility = View.INVISIBLE
             binding.buttonNext.visibility = View.VISIBLE
             binding.bluffs.bluffs.visibility = View.VISIBLE
         }
 
-        gameFetcher.getGame(gameId) {game ->
-            val demonRole = game.players.first { it.role!!.type == RoleType.DEMON }.role!!
-            binding.role.text = demonRole.name.name
-            binding.roleIcon.setImageDrawable(imageFetcher.getDrawable(demonRole))
-            binding.description.text = demonRole.description
-
+        gameFetcher.getGame(gameId) { game ->
             binding.bluffs.role1.setImageDrawable(imageFetcher.getDrawable(game.bluffs[0]))
             binding.bluffs.name1.text = game.bluffs[0].name
             binding.bluffs.role2.setImageDrawable(imageFetcher.getDrawable(game.bluffs[1]))

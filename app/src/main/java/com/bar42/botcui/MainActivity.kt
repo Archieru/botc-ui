@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.add.setOnClickListener {
             gameFetcher.addGame {
-                GameProgress(it, this).proceedGame()
+                GameProgress(it, this).openActivity(GameStatus.CREATED)
             }
         }
     }

@@ -28,6 +28,7 @@
     <string name="button_start_day">Start the day</string>
     <string name="button_start_night">Start the night</string>
     <string name="button_next_role">Next role</string>
+    <string name="ready_to_kill">Ready to kill</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>

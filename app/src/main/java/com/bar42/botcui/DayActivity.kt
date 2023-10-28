@@ -14,8 +14,11 @@ class DayActivity : BaseGameActivity() {
                 GameProgress(gameId, GameStatus.DAY, this).proceedGame()
             }
         }
-        binding.mainAction.setText(R.string.button_next_role)
-        binding.mainAction.setOnClickListener { }
+        binding.mainAction.setText(R.string.ready_to_kill)
+        binding.mainAction.setOnClickListener { prepareKilling() }
+    }
+
+    private fun prepareKilling() {
         gameFetcher.getGame(gameId) {
             game = it
             setOnPlayerClick { player, layout ->
@@ -23,17 +26,22 @@ class DayActivity : BaseGameActivity() {
                 if (player.isAlive) {
                     layout.role.setBackgroundColor(getColor(R.color.dead))
                     playerFetcher.killPlayer(gameId, player.name) {
-                        updateGameField("${player.name} killed")
+                        updateGameField("${player.name} killed") {
+                            prepareKilling()
+                        }
                     }
                 } else {
                     val color = if (player.isEvil) getColor(R.color.minion)
                     else getColor(R.color.townfolk)
                     layout.role.setBackgroundColor(color)
                     playerFetcher.resurrectPlayer(gameId, player.name) {
-                        updateGameField("${player.name} resurrected")
+                        updateGameField("${player.name} resurrected") {
+                            prepareKilling()
+                        }
                     }
                 }
             }
+            binding.contentText.setText(R.string.ready_to_kill)
         }
     }
 }

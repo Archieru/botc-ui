@@ -6,7 +6,7 @@ data class Player(
     val name: String,
     val gameId: Int? = null,
     val id: Int? = null,
-    var role: Role? = null,
+    var role: RoleName = RoleName.Empty,
     var isEvil: Boolean = false,
     var isAlive: Boolean = true,
     var isGhostVote: Boolean = true,

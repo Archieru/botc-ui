@@ -2,6 +2,7 @@ package com.bar42.botcui.fetcher
 
 import androidx.appcompat.app.AppCompatActivity
 import com.bar42.botcui.model.Player
+import com.bar42.botcui.model.Role
 import retrofit2.http.Path
 
 class PlayerFetcher(context: AppCompatActivity): BaseFetcher(context) {
@@ -25,7 +26,7 @@ class PlayerFetcher(context: AppCompatActivity): BaseFetcher(context) {
         }
     }
 
-    fun getPlayerStartInfo(gameId: Int, name: String, callback: (Player) -> Unit) {
+    fun getPlayerStartInfo(gameId: Int, name: String, callback: (Role) -> Unit) {
         executeCallback(callback) {
             playerInterface.getPlayerStartInfo(gameId, name)
         }

@@ -1,6 +1,7 @@
 package com.bar42.botcui.fetcher
 
 import com.bar42.botcui.model.Player
+import com.bar42.botcui.model.Role
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -17,7 +18,7 @@ interface PlayerInterface {
     suspend fun addPlayerToGame(@Path("gameId") gameId: Int, @Path("name") name: String): Response<Player>
 
     @GET("games/{gameId}/players/{name}/startinfo")
-    suspend fun getPlayerStartInfo(@Path("gameId") gameId: Int, @Path("name") name: String): Response<Player>
+    suspend fun getPlayerStartInfo(@Path("gameId") gameId: Int, @Path("name") name: String): Response<Role>
 
     @POST("games/{gameId}/players/{name}/kill")
     suspend fun killPlayer(@Path("gameId") gameId: Int, @Path("name") name: String): Response<Void>

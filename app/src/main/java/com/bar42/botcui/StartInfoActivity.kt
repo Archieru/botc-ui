@@ -45,9 +45,7 @@ class StartInfoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        playerFetcher.getPlayerStartInfo(gameId, playerName) {
-            val role = it.role!!
-
+        playerFetcher.getPlayerStartInfo(gameId, playerName) { role ->
             binding.role.text = role.name.name
             binding.roleIcon.setImageDrawable(imageFetcher.getDrawable(role))
             binding.description.text = role.description

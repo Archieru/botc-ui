@@ -12,7 +12,8 @@ import java.net.URL
 
 open class BaseFetcher(val context: AppCompatActivity) {
     val retrofit = Retrofit.Builder()
-        .baseUrl(URL("https://sound-mink-natural.ngrok-free.app/api/v1/"))
+        .baseUrl(URL("http://5.181.202.28:8080/api/v1/"))
+//        .baseUrl(URL("https://sound-mink-natural.ngrok-free.app/api/v1/"))
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
